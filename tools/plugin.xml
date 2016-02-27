@@ -112,7 +112,9 @@ http://jactr.org/node/144</description>
                value=".*">
          </parameter>
          <description>
-            Tracks the expected utility of productions that match the provided patterns (regex) and outputs them to the file. If TrackInstantiations is true, it will log the instantiation&apos;s utility (subject to noise) rather than the production&apos;s.Note: can only be attached to one model
+            Tracks the expected utility of productions that match the provided patterns (regex) and outputs them to the file. If TrackInstantiations is true, it will log the instantiation&apos;s utility (subject to noise) rather than the production&apos;s.
+
+Note: can only be attached to one model
          </description>
          <parameter name="attach" value="" />
       </instrument>
@@ -444,4 +446,23 @@ This is provided here for diagnosing individual model runs. Iterative runs autom
             name="Send to IDE">
       </sink>
    </extension>
+
+   <extension
+         point="org.jactr.core.extensions">
+      <model-extension
+            class="org.jactr.tools.masterslave.master.MasterExtension"
+            name="Master Model Extension">
+         <description>
+            Provides capabilities to control slave models from within a master model.
+         </description>
+      </model-extension>
+      <model-extension
+            class="org.jactr.tools.masterslave.slave.SlaveExtension"
+            name="Slave Model Extension">
+         <description>
+            Allows a model to be executed as a slave within a master model
+         </description>
+      </model-extension>
+   </extension>
+
 </plugin>
