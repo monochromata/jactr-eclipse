@@ -4,6 +4,7 @@
    <extension-point id="iterative" name="Iterative Listeners" schema="schema/iterative.exsd"/>
    <extension-point id="tracers" name="Runtime Tracers" schema="schema/tracer.exsd"/>
    <extension-point id="sinks" name="Trace data sinks" schema="schema/sinks.exsd"/>
+   <extension-point id="commands" name="Import Commands from Package" schema="schema/commands.exsd"/>
 
    <extension
          point="org.jactr.core.instruments" name="jACT-R Tools Instruments" id="org.jactr.tools.instruments">
@@ -463,6 +464,19 @@ This is provided here for diagnosing individual model runs. Iterative runs autom
             Allows a model to be executed as a slave within a master model
          </description>
       </model-extension>
+
+   <extension
+         point="org.jactr.core.instruments">
+      <instrument
+            class="org.jactr.tools.shell.BeanShellInterface"
+            name="BeanShell">
+         <parameter name="attach" value="all"/>
+         <description>
+            Provides a web accessible beanshell (localhost:9999) which allows full control via java syntax. 
+         </description>
+      </instrument>
+   </extension>
+
    </extension>
 
 </plugin>
