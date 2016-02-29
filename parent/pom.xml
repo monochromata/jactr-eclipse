@@ -66,10 +66,12 @@
 		<!-- TODO: Use commonreality.org -->
 		<commonreality.server>monochromata.de</commonreality.server>
 		<commonreality.repo.url>http://${commonreality.server}/maven/releases/org.commonreality</commonreality.repo.url>
+		<commonreality.p2repo.url>http://${commonreality.server}/eclipse/sites/org.commonreality</commonreality.p2repo.url>
 		<!-- TODO: Use jactr.org -->
 		<jactr.version>${project.version}</jactr.version>
 		<jactr.server>monochromata.de</jactr.server>
-		<jactr.repo.url>http://${jactr.server}/maven/releases/${project.groupId}</jactr.repo.url>
+		<jactr.repo.url>http://${jactr.server}/maven/releases/org.jactr</jactr.repo.url>
+		<jactr.p2repo.url>http://${jactr.server}/eclipse/sites/org.jactr</jactr.p2repo.url>
 		<!-- TODO: Use jactr.org -->
 		<jactr.eclipse.version>${project.version}</jactr.eclipse.version>
 		<jactr.eclipse.server>monochromata.de</jactr.eclipse.server>
