@@ -89,6 +89,7 @@
 							<categoryFileURL>${basedir}/category.xml</categoryFileURL>
 							<artifacts>
 							<!-- TODO: Add plug-ins -->
+							</artifacts>
 							<!-- TODO: Ineffective until https://github.com/reficio/p2-maven-plugin/pull/75 
 								gets merged -->
 							<featureDefinitions>
