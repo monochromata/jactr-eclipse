@@ -11,6 +11,8 @@
 	<artifactId>aggregator</artifactId>
 	<version>2.0.0</version>
 	<packaging>pom</packaging>
+	<name>jACT-R Eclipse</name>
+	<description>The aggregator for the jACT-R Eclipse build</description>
 
 	<developers>
 		<developer>
@@ -50,14 +52,33 @@
 	</scm>
 
 	<modules>
-		<module>core</module>
-		<module>io</module>
-		<module>launching</module>
-		<module>modules</module>
-		<module>scripting</module>
-		<module>sensors</module>
-		<module>tools</module>
-		<module>tools.shell</module>
+		<module>parent</module>
+		<module>plugin-parent</module>
+		<module>feature-parent</module>
+		<module>org.jactr.eclipse.association.ui</module>
+		<module>org.jactr.eclipse.bundles</module>
+		<module>org.jactr.eclipse.compilers</module>
+		<module>org.jactr.eclipse.core</module>
+		<module>org.jactr.eclipse.execution</module>
+		<module>org.jactr.eclipse.io</module>
+		<module>org.jactr.eclipse.launching</module>
+		<module>org.jactr.eclipse.modules</module>
+		<module>org.jactr.eclipse.production</module>
+		<module>org.jactr.eclipse.runtime</module>
+		<module>org.jactr.eclipse.runtime.ui</module>
+		<module>org.jactr.eclipse.runtime.ui.probe</module>
+		<module>org.jactr.eclipse.scripting</module>
+		<module>org.jactr.eclipse.sensors</module>
+		<module>org.jactr.eclipse.tools</module>
+		<module>org.jactr.eclipse.tools.shell</module>
+		<module>org.jactr.eclipse.ui</module>
+		<module>org.jactr.eclipse.bridge.jactr.core.feature</module>
+		<module>org.jactr.eclipse.bridge.jactr.io.feature</module>
+		<module>org.jactr.eclipse.bridge.jactr.modules.feature</module>
+		<module>org.jactr.eclipse.bridge.jactr.tools.feature</module>
+		<module>org.jactr.eclipse.feature</module>
+		<module>org.jactr.eclipse.tools.feature</module>
+		<module>org.jactr.eclipse.product</module>
 		<module>p2repo</module>
 	</modules>
 

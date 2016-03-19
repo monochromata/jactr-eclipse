@@ -1,30 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- See https://wiki.eclipse.org/Equinox/p2/Query_Language_for_p2 and 
-         https://wiki.eclipse.org/Installable_Units -->
 <site>
-	<category-def name="org.jactr.eclipse.category" label="jACT-R">
-		<description>
-			jACT-R Eclipse plug-ins
-		</description>
-	</category-def>
-	<category-def name="org.jactr.eclipse.dependencies.category"
-		label="Dependencies of CommonReality">
-		<description>
-			Third-party plugins required by jACT-R Eclipse plugins
-		</description>
-	</category-def>
-	<iu>
-		<category name="org.jactr.eclipse.category" />
-		<query>
-			<expression type="match"><![CDATA[properties.exists(p | p.key == 'org.eclipse.equinox.p2.provider' && p.value=='jactr.org')]]></expression>
-		</query>
-	</iu>
-	<iu>
-		<category name="org.jactr.eclipse.dependencies.category" />
-		<query>
-			<expression type="match"><![CDATA[!properties.exists(p | p.key =='org.eclipse.equinox.p2.provider' && p.value=='jactr.org')]]></expression>
-		</query>
-	</iu>
-	<repository-reference location="${commonreality.p2repo.url}" enabled="true" />
-	<repository-reference location="${jactr.p2repo.url}" enabled="true" />
+   <category-def name="org.jactr.eclipse.category" label="jACT-R Eclipse">
+      <description>
+         jACT-R Eclipse features
+      </description>
+   </category-def>
+   <feature id="org.jactr.eclipse.feature">
+      <category name="org.jactr.eclipse.category"/>
+   </feature>
+   <feature id="org.jactr.eclipse.feature.source">
+      <category name="org.jactr.eclipse.category"/>
+   </feature>
+   <feature id="org.jactr.eclipse.tools.feature">
+      <category name="org.jactr.eclipse.category"/>
+   </feature>
+   <feature id="org.jactr.eclipse.tools.feature.source">
+      <category name="org.jactr.eclipse.category"/>
+   </feature>
+   <category-def name="org.jactr.eclipse.dependencies.category" label="Dependencies of jACT-R Eclipse">
+      <description>
+         Third-party features required by jACT-R Eclipse
+      </description>
+   </category-def>
+   <feature id="org.jactr.eclipse.bridge.jactr.core.feature">
+      <category name="org.jactr.eclipse.category"/>
+   </feature>
+   <feature id="org.jactr.eclipse.bridge.jactr.core.feature.source">
+      <category name="org.jactr.eclipse.category"/>
+   </feature>
+   <feature id="org.jactr.eclipse.bridge.jactr.io.feature">
+      <category name="org.jactr.eclipse.category"/>
+   </feature>
+   <feature id="org.jactr.eclipse.bridge.jactr.io.feature.source">
+      <category name="org.jactr.eclipse.category"/>
+   </feature>
+   <feature id="org.jactr.eclipse.bridge.jactr.modules.feature">
+      <category name="org.jactr.eclipse.category"/>
+   </feature>
+   <feature id="org.jactr.eclipse.bridge.jactr.modules.feature.source">
+      <category name="org.jactr.eclipse.category"/>
+   </feature>
+   <feature id="org.jactr.eclipse.bridge.jactr.tools.feature">
+      <category name="org.jactr.eclipse.category"/>
+   </feature>
+   <feature id="org.jactr.eclipse.bridge.jactr.tools.feature.source">
+      <category name="org.jactr.eclipse.category"/>
+   </feature>
+	<repository-reference location="http://monochromata.de/eclipse/sites/org.commonreality" enabled="true" />
+	<repository-reference location="http://monochromata.de/eclipse/sites/org.jactr" enabled="true" />
+	<repository-reference location="http://download.eclipse.org/technology/nebula/snapshot" enabled="true" />
 </site>

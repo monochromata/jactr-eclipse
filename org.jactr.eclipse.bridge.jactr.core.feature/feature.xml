@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.jactr.eclipse.bridge.jactr.core.feature"
+      label="jACT-R core feature"
+      version="2.0.0"
+      provider-name="jactr.org">
+
+   <description url="http://jactr.org/">
+      jACT-R Core feature set. This will install all the basic jACT-R packages.
+   </description>
+
+   <copyright>
+      Copyright (C) 2001-16, Anthony Harrison amharrison@gmail.com
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public License
+as published by the Free Software Foundation; either version
+2.1 of the License, or (at your option) any later version.
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307
+USA
+This software makes use of the following Open Source technologies:
+ANTLR http://antlr.org/
+Apache Commons http://commons.apache.org/
+Apache Logging http://log4j.apache.org/
+Rhino JavaScript interpretor http://mozilla.org/
+   </copyright>
+
+   <license url="http://www.gnu.org/licenses/lgpl-3.0.en.html">
+      [Enter License Description here.]
+   </license>
+
+   <url>
+      <update label="jACT-R Eclipse updates" url="http://monochromata.de/eclipse/sites/org.jactr.eclipse/"/>
+      <discovery label="CommonReality updates" url="http://monochromata.de/eclipse/sites/org.commonreality/"/>
+      <discovery label="jACT-R updates" url="http://monochromata.de/eclipse/sites/org.jactr/"/>
+   </url>
+
+   <requires>
+      <import plugin="org.commonreality.core"/>
+      <import plugin="org.commonreality.mina"/>
+      <import plugin="org.mozilla.javascript"/>
+   </requires>
+
+   <plugin
+         id="org.jactr.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

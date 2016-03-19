@@ -2,17 +2,20 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: jACT-R Probe View Plug-in
 Bundle-SymbolicName: org.jactr.eclipse.runtime.ui.probe;singleton:=true
-Bundle-Version: 1.0.1.qualifier
+Bundle-Version: 2.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: org.jactr.eclipse.runtime,
+Require-Bundle: org.apache.commons.logging,
+ org.javolution,
+ org.javolution.core-java,
+ org.jactr.eclipse.runtime,
  org.jactr.eclipse.runtime.ui,
- org.jactr,
+ org.jactr.core,
  org.jactr.eclipse.ui,
  org.eclipse.swt,
  org.eclipse.ui,
  org.eclipse.core.runtime,
  org.jactr.eclipse.core,
- org.jactr.tools;bundle-version="1.1.0",
+ org.jactr.tools,
  org.eclipse.nebula.visualization.xygraph;bundle-version="1.0.0",
  org.eclipse.draw2d,
  org.eclipse.core.resources

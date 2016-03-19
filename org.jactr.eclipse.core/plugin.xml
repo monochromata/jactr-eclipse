@@ -8,7 +8,7 @@
    <extension-point id="modules" name="jACT-R Modules" schema="schema/module.exsd"/>
    <extension-point id="instruments" name="jACT-R Instruments" schema="schema/instrument.exsd"/>
    
-   <extension point="org.jactr.core.modules" name="jACT-R Core Modules">
+   <extension point="org.jactr.eclipse.core.modules" name="jACT-R Core Modules">
       <module
             class="org.jactr.core.module.declarative.six.DefaultDeclarativeModule6"
             defaultEnabled="true"
@@ -162,7 +162,7 @@ NOTE: This module works but its values have not been verified.
    </extension>
 
    
-   <extension point="org.jactr.core.instruments" name="jACT-R Core Instruments">
+   <extension point="org.jactr.eclipse.core.instruments" name="jACT-R Core Instruments">
       <instrument
             class="org.jactr.core.logging.impl.DefaultModelLogger"
             hidden="false"

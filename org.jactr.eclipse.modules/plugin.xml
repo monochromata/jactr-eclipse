@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+      
+   <extension point="org.jactr.eclipse.core.modules" name="Threaded Cognition Modules">
+     
+      <module
+            class="org.jactr.modules.threaded.procedural.DefaultThreadedProceduralModule6"
+            defaultEnabled="false"
+            name="Threaded Procedural v6"
+            requiresCommonReality="false"
+            weight="10">
+         <description>
+            Handles conflict resolution in threaded cases.
+         </description>
+      </module>
+      <module
+            class="org.jactr.modules.threaded.goal.DefaultThreadedGoalModule6"
+            defaultEnabled="false"
+            name="Threaded Goal v6"
+            requiresCommonReality="false"
+            weight="10">
+         <description>
+            Provides a capacity goal buffer permitting multiple goals to be executed in parallel
+         </description>
+      </module>
+   </extension>
+   <extension
+        point="org.jactr.eclipse.io.astparticipants">
+     <astparticipant
+           contributingClass="org.jactr.modules.threaded.procedural.DefaultThreadedProceduralModule6"
+           content="org/jactr/io/include/procedural.jactr"
+           class="org.jactr.eclipse.modules.threaded.io.ThreadedProceduralModuleParticipant"/>
+     <astparticipant
+           contributingClass="org.jactr.modules.threaded.goal.DefaultThreadedGoalModule6"
+           content="org/jactr/io/include/goal.jactr"
+           class="org.jactr.eclipse.modules.threaded.io.ThreadedGoalModuleParticipant"/>
+   </extension>   
+
+
+   <extension
+         point="org.jactr.eclipse.core.modules">
+      <module
+            class="org.jactr.modules.temporal.six.DefaultTemporalModule6"
+            defaultEnabled="false"
+            name="Temporal v6"
+            requiresCommonReality="false"
+            weight="10">
+         <description>
+            Implementation of Taatgen, Van Rijn and Anderson (2005) temporal module.
+         </description>
+      </module>
+   </extension>
+   <extension
+         point="org.jactr.eclipse.io.astparticipants">
+      <astparticipant
+            content="org/jactr/modules/temporal/temporal.jactr"
+            contributingClass="org.jactr.modules.temporal.six.DefaultTemporalModule6"
+            class="org.jactr.eclipse.modules.temporal.io.TemporalModuleParticipant">
+      </astparticipant>
+   </extension>      
+</plugin>

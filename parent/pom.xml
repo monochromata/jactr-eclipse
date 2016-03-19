@@ -40,11 +40,13 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<retryFailedDeploymentCount>3</retryFailedDeploymentCount>
 		<!-- Copy nested JavaDoc resources -->
 		<docfilessubdirs>true</docfilessubdirs>
 		<!-- Include sources in JavaDoc -->
 		<linksource>true</linksource>
-		<linksource>true</linksource>
+		<tycho.version>0.24.0</tycho.version>
+		<replacer.plugin.version>1.5.3</replacer.plugin.version>
 		<junit.version>4.12</junit.version>
 		<hamcrest.version>1.3</hamcrest.version>
 		<jmock.version>2.8.1</jmock.version>
@@ -62,16 +64,23 @@
 		<javolution.version>5.2.3</javolution.version>
 		<javolution.core.java.version>6.0.0</javolution.core.java.version>
 		<antlr.version>3.1.1</antlr.version>
-		<commonreality.version>2.0.89</commonreality.version>
+		<beanshell.version.prefix>2.0</beanshell.version.prefix>
+		<beanshell.version.suffix>b4</beanshell.version.suffix>
+		<beanshell.version>${beanshell.version.prefix}${beanshell.version.suffix}</beanshell.version>
+		<beanshell.bundle.version>${beanshell.version.prefix}.0.0${beanshell.version.suffix}</beanshell.bundle.version>
+		<!-- TODO: Update to current version? -->
+<!-- 		<eclipse.orbit.p2repo.url>http://download.eclipse.org/tools/orbit/downloads/drops/R20150519210750/repository/</eclipse.orbit.p2repo.url> -->
+<!-- 		<eclipse.orbit.p2repo.url>http://download.eclipse.org/tools/orbit/downloads/drops/R20150124073747/repository/</eclipse.orbit.p2repo.url> -->
+		<nebula.p2repo.url>http://download.eclipse.org/technology/nebula/snapshot</nebula.p2repo.url>
+		<org.eclipse.core.runtime.compatibility.version>3.2.300.v20150423-0821</org.eclipse.core.runtime.compatibility.version>
 		<mars-repo.url>http://download.eclipse.org/releases/mars</mars-repo.url>
 		<!-- TODO: Use commonreality.org -->
+		<commonreality.version>2.0.98</commonreality.version>
 		<commonreality.server>monochromata.de</commonreality.server>
-		<commonreality.repo.url>http://${commonreality.server}/maven/releases/org.commonreality</commonreality.repo.url>
 		<commonreality.p2repo.url>http://${commonreality.server}/eclipse/sites/org.commonreality</commonreality.p2repo.url>
 		<!-- TODO: Use jactr.org -->
-		<jactr.version>${project.version}</jactr.version>
+		<jactr.version>2.0.36</jactr.version>
 		<jactr.server>monochromata.de</jactr.server>
-		<jactr.repo.url>http://${jactr.server}/maven/releases/org.jactr</jactr.repo.url>
 		<jactr.p2repo.url>http://${jactr.server}/eclipse/sites/org.jactr</jactr.p2repo.url>
 		<!-- TODO: Use jactr.org -->
 		<jactr.eclipse.version>${project.version}</jactr.eclipse.version>
@@ -82,9 +91,8 @@
 		<jactr.eclipse.p2repo.path>eclipse/sites/${project.groupId}</jactr.eclipse.p2repo.path>
 		<jactr.eclipse.p2repo.url>${jactr.eclipse.download.prefix}/${jactr.eclipse.p2repo.path}</jactr.eclipse.p2repo.url>
 		<jactr.eclipse.p2repo.upload.url>${jactr.eclipse.upload.prefix}/${jactr.eclipse.p2repo.path}</jactr.eclipse.p2repo.upload.url>
-		<jactr.eclipse.repo.path>maven/releases/${project.groupId}</jactr.eclipse.repo.path>
-		<jactr.eclipse.repo.url>${jactr.eclipse.download.prefix}/${jactr.eclipse.repo.path}</jactr.eclipse.repo.url>
-		<jactr.eclipse.repo.upload.url>${jactr.eclipse.upload.prefix}/${jactr.eclipse.repo.path}</jactr.eclipse.repo.upload.url>
+		<jactr.eclipse.products.path>eclipse/products/${project.groupId}</jactr.eclipse.products.path>
+		<jactr.eclipse.products.upload.url>${jactr.eclipse.upload.prefix}/${jactr.eclipse.products.path}</jactr.eclipse.products.upload.url>
 		<!-- Bundle properties -->
 		<bundle.manifest.version>2</bundle.manifest.version>
 		<bundle.vendor>jactr.org</bundle.vendor>
@@ -103,15 +111,28 @@
 		</repository>
 		<repository>
 			<id>commonreality-repo</id>
-			<url>${commonreality.repo.url}</url>
+			<url>${commonreality.p2repo.url}</url>
+			<layout>p2</layout>
 		</repository>
 		<repository>
 			<id>jactr-repo</id>
-			<url>${jactr.repo.url}</url>
+			<url>${jactr.p2repo.url}</url>
+			<layout>p2</layout>
 		</repository>
+<!-- 		<repository> -->
+<!-- 			<id>jactr-eclipse-repo</id> -->
+<!-- 			<url>${jactr.eclipse.p2repo.url}</url> -->
+<!-- 			<layout>p2</layout> -->
+<!-- 		</repository> -->
+<!-- 		<repository> -->
+<!-- 			<id>eclipse-orbit-repo</id> -->
+<!-- 			<url>${eclipse.orbit.p2repo.url}</url> -->
+<!-- 			<layout>p2</layout> -->
+<!-- 		</repository> -->
 		<repository>
-			<id>jactr-eclipse-repo</id>
-			<url>${jactr.eclipse.repo.url}</url>
+			<id>nebula-repo</id>
+			<url>${nebula.p2repo.url}</url>
+			<layout>p2</layout>
 		</repository>
 	</repositories>
 
@@ -141,187 +162,6 @@
 		</site>
 	</distributionManagement>
 
-	<dependencyManagement>
-		<dependencies>
-			<!-- Duplicates the dependencies also covered by the p2repo module -->
-			<dependency>
-				<groupId>commons-logging</groupId>
-				<artifactId>commons-logging</artifactId>
-				<version>${commons.logging.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-primitives</groupId>
-				<artifactId>commons-primitives</artifactId>
-				<version>${commons.primitives.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-cli</groupId>
-				<artifactId>commons-cli</artifactId>
-				<version>${commons.cli.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-collections</groupId>
-				<artifactId>commons-collections</artifactId>
-				<version>${commons.collections.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-math</artifactId>
-				<version>${commons.math.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.javolution</groupId>
-				<artifactId>javolution</artifactId>
-				<version>${javolution.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.javolution</groupId>
-				<artifactId>javolution-core-java</artifactId>
-				<version>${javolution.core.java.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.antlr</groupId>
-				<artifactId>antlr</artifactId>
-				<version>${antlr.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.commonreality</groupId>
-				<artifactId>api</artifactId>
-				<version>${commonreality.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.commonreality</groupId>
-				<artifactId>core</artifactId>
-				<version>${commonreality.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.commonreality</groupId>
-				<artifactId>modalities</artifactId>
-				<version>${commonreality.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.commonreality</groupId>
-				<artifactId>modalities.spatial</artifactId>
-				<version>${commonreality.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.commonreality</groupId>
-				<artifactId>net</artifactId>
-				<version>${commonreality.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.commonreality</groupId>
-				<artifactId>netty</artifactId>
-				<version>${commonreality.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.commonreality</groupId>
-				<artifactId>sensors</artifactId>
-				<version>${commonreality.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.commonreality</groupId>
-				<artifactId>sensors.base</artifactId>
-				<version>${commonreality.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.commonreality</groupId>
-				<artifactId>sensors.swing</artifactId>
-				<version>${commonreality.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.commonreality</groupId>
-				<artifactId>sensors.xml</artifactId>
-				<version>${commonreality.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.commonreality</groupId>
-				<artifactId>support</artifactId>
-				<version>${commonreality.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.commonreality</groupId>
-				<artifactId>time</artifactId>
-				<version>${commonreality.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.jactr</groupId>
-				<artifactId>core</artifactId>
-				<version>${jactr.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.jactr</groupId>
-				<artifactId>io</artifactId>
-				<version>${jactr.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.jactr</groupId>
-				<artifactId>modules.threaded</artifactId>
-				<version>${jactr.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.jactr</groupId>
-				<artifactId>modules.temporal</artifactId>
-				<version>${jactr.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.jactr</groupId>
-				<artifactId>modules.versioned</artifactId>
-				<version>${jactr.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.jactr</groupId>
-				<artifactId>scripting</artifactId>
-				<version>${jactr.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.jactr</groupId>
-				<artifactId>sensors</artifactId>
-				<version>${jactr.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.jactr</groupId>
-				<artifactId>tools</artifactId>
-				<version>${jactr.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.jactr</groupId>
-				<artifactId>tools.experiment</artifactId>
-				<version>${jactr.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.jactr</groupId>
-				<artifactId>tools.masterslave</artifactId>
-				<version>${jactr.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.jactr</groupId>
-				<artifactId>tools.shell</artifactId>
-				<version>${jactr.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.mozilla</groupId>
-				<artifactId>rhino</artifactId>
-				<version>${rhino.version}</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.jmock</groupId>
-			<artifactId>jmock-junit4</artifactId>
-			<version>${jmock.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>nl.jqno.equalsverifier</groupId>
-			<artifactId>equalsverifier</artifactId>
-			<version>${equalsverifier.version}</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -349,30 +189,65 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<version>2.4</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							<goal>jar-no-fork</goal>
-						</goals>
-					</execution>
-				</executions>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<extensions>true</extensions>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10.3</version>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<environments>
+						<!-- 32bit environments are disabled to save time and space -->
+						<!-- <environment> -->
+						<!-- <os>linux</os> -->
+						<!-- <ws>gtk</ws> -->
+						<!-- <arch>x86</arch> -->
+						<!-- </environment> -->
+						<!-- <environment> -->
+						<!-- <os>win32</os> -->
+						<!-- <ws>win32</ws> -->
+						<!-- <arch>x86</arch> -->
+						<!-- </environment> -->
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<!-- Windows and Mac are temporarily disabled to save time -->
+						<!-- <environment> -->
+						<!-- <os>win32</os> -->
+						<!-- <ws>win32</ws> -->
+						<!-- <arch>x86_64</arch> -->
+						<!-- </environment> -->
+						<!-- <environment> -->
+						<!-- <os>macosx</os> -->
+						<!-- <ws>cocoa</ws> -->
+						<!-- <arch>x86_64</arch> -->
+						<!-- </environment> -->
+					</environments>
+					<!-- TODO: This is actually misplaced, but see https://www.eclipse.org/forums/index.php?t=msg&th=1068443&goto=1701679&#msg_1701679 
+						and https://bugs.eclipse.org/bugs/attachment.cgi?id=248973 and http://wiki.eclipse.org/OTJ -->
+					<filters>
+						<filter>
+							<type>eclipse-plugin</type>
+							<id>org.eclipse.jdt.core</id>
+							<restrictTo>
+								<version>3.11.0.v20150602-1242</version>
+							</restrictTo>
+						</filter>
+					</filters>
+					<!-- Maybe define a target-file-based target platform later -->
+					<!-- <target> -->
+					<!-- <artifact> -->
+					<!-- <groupId>de.monochromata.anaphors</groupId> -->
+					<!-- <artifactId>de.monochromata.anaphors.target</artifactId> -->
+					<!-- <version>${plugin.version}</version> -->
+					<!-- </artifact> -->
+					<!-- </target> -->
+				</configuration>
 			</plugin>
 		</plugins>
 		<extensions>
@@ -393,7 +268,7 @@
 					<plugin>
 						<groupId>com.google.code.maven-replacer-plugin</groupId>
 						<artifactId>replacer</artifactId>
-						<version>1.5.3</version>
+						<version>${replacer.plugin.version}</version>
 						<goals>
 							<goal>replace</goal>
 						</goals>
@@ -417,7 +292,7 @@
 					<plugin>
 						<groupId>com.google.code.maven-replacer-plugin</groupId>
 						<artifactId>replacer</artifactId>
-						<version>1.5.3</version>
+						<version>${replacer.plugin.version}</version>
 						<goals>
 							<goal>replace</goal>
 						</goals>

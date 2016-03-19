@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: jACT-R IO
+Bundle-SymbolicName: org.jactr.eclipse.io; singleton:=true
+Bundle-Version: 2.0.0
+Export-Package: org.jactr.eclipse.io.activator
+Eclipse-BuddyPolicy: registered 
+Eclipse-RegisterBuddy: org.jactr, org.commonreality.core, org.apache.log4j
+Require-Bundle: org.jactr.core,
+ org.jactr.io,
+ org.jactr.scripting,
+ org.commonreality.core,
+ org.apache.commons.logging;bundle-version="1.1.1",
+ org.javolution;bundle-version="5.2.3",
+ org.javolution.core-java;bundle-version="6.0.0",
+ org.eclipse.core.runtime
+Bundle-ClassPath: .
+Bundle-Vendor: jactr.org
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.jactr.eclipse.io.activator.Activator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

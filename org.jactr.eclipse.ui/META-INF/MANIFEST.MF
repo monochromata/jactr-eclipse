@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: jACT-R UI
 Bundle-SymbolicName: org.jactr.eclipse.ui; singleton:=true
-Bundle-Version: 1.2.8.qualifier
+Bundle-Version: 2.0.0
 Bundle-Activator: org.jactr.eclipse.ui.UIPlugin
 Bundle-Vendor: jactr.org
 Bundle-Localization: plugin
@@ -37,10 +37,14 @@ Export-Package: org.jactr.eclipse.ui,
  org.jactr.eclipse.ui.wizards.model,
  org.jactr.eclipse.ui.wizards.project,
  org.jactr.eclipse.ui.wizards.templates
-Require-Bundle: org.eclipse.ui,
+Require-Bundle: org.apache.commons.logging,
+ org.javolution,
+ org.javolution.core-java,
+ org.antlr,
+ org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.workbench.texteditor,
- org.jactr,
+ org.jactr.core,
  org.jactr.eclipse.core,
  org.eclipse.ui.ide,
  org.eclipse.jface.text,

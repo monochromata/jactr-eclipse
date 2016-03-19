@@ -10,11 +10,11 @@
 	<groupId>org.jactr.eclipse</groupId>
 	<artifactId>p2repo</artifactId>
 	<version>2.0.0</version>
+	<packaging>eclipse-repository</packaging>
 	<name>p2 Repo</name>
 	<description>Creates a P2 repository (a.k.a. update site) that provides the Maven artifacts in
 	the group org.jactr.eclipse and their dependencies as Eclipse plugins.</description>
 	<url>http://monochromata.de/maven/sites/org.jactr/</url>
-	<packaging>pom</packaging>
 
 	<properties>
 		<maven.deploy.skip>true</maven.deploy.skip>
@@ -40,142 +40,20 @@
 		</pluginRepository>
 	</pluginRepositories>
 
-	<!-- Dependencies are only listed to have p2repo built after all projects 
-		included in it. -->
-	<dependencies>
-		<dependency>
-			<groupId>org.jactr.eclipse</groupId>
-			<artifactId>core</artifactId>
-		</dependency>
-	</dependencies>
-
 	<build>
 		<plugins>
-			<!-- Read license files into properties -->
+			<!-- Generate the P2 repository -->
 			<plugin>
-				<groupId>org.codehaus.gmaven</groupId>
-				<artifactId>groovy-maven-plugin</artifactId>
-				<version>2.0</version>
-				<executions>
-					<execution>
-						<phase>validate</phase>
-						<goals>
-							<goal>execute</goal>
-						</goals>
-						<configuration>
-							<source>
-								def al2File = new
-								File(project.properties.apache_license_20_file)
-								project.properties.apache_license_20 = al2File.getText()
-							</source>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<!-- Generate the bundles -->
-			<plugin>
-				<groupId>org.reficio</groupId>
-				<artifactId>p2-maven-plugin</artifactId>
-				<version>1.2.0-SNAPSHOT</version>
-				<executions>
-					<execution>
-						<id>pack-site</id>
-						<phase>package</phase>
-						<goals>
-							<goal>site</goal>
-						</goals>
-						<configuration>
-							<pedantic>true</pedantic>
-							<categoryFileURL>${basedir}/category.xml</categoryFileURL>
-							<artifacts>
-							<!-- TODO: Add plug-ins -->
-							</artifacts>
-							<!-- TODO: Ineffective until https://github.com/reficio/p2-maven-plugin/pull/75 
-								gets merged -->
-							<featureDefinitions>
-								<feature>
-									<id>commons-logging.feature</id>
-									<version>${commons.logging.version}</version>
-									<label>Commons Logging</label>
-									<providerName>Apache Software Foundation</providerName>
-									<!-- Description taken from http://commons.apache.org/proper/commons-logging/index.html -->
-									<description>The Logging package is an ultra-thin bridge
-										between different logging implementations. A library that uses
-										the commons-logging API can be used with any logging
-										implementation at runtime. Commons-logging comes with support
-										for a number of popular logging implementations, and writing
-										adapters for others is a reasonably simple task.</description>
-									<!-- Copyright taken from commons-logging-1.1.1.jar:/META-INF/NOTICE -->
-									<copyright>Commons Logging
-										Copyright 2001-2007 The Apache
-										Software Foundation
-
-										This product includes/uses software(s)
-										developed by 'an unknown
-										organization'
-										- Unnamed -
-										avalon-framework:avalon-framework:jar:4.1.3
-										- Unnamed -
-										log4j:log4j:jar:1.2.12
-										- Unnamed - logkit:logkit:jar:1.0.1</copyright>
-									<license>${apache_license_20}</license>
-									<generateSourceFeature>true</generateSourceFeature>
-									<artifacts>
-										<artifact>
-											<id>commons-logging:commons-logging:${commons.logging.version}</id>
-											<source>true</source>
-											<instructions>
-												<!-- Ignoring non-satisfiable imports for org.apache.log, javax.servlet 
-													and org.apache.avalon.framework.logger -->
-												<Import-Package>org.apache.log4j</Import-Package>
-												<!-- Ignoring uses-statements for org.apache.commons.logging.impl: 
-													org.apache.log,org.apache.avalon.framework.logger,javax.servlet -->
-												<Export-Package>org.apache.commons.logging;uses:="org.apache.commons.logging.impl",org.apache.commons.logging.impl;uses:="org.apache.commons.logging,org.apache.log4j"</Export-Package>
-											</instructions>
-										</artifact>
-									</artifacts>
-								</feature>
-								<!-- TODO: Add feature definitions for org.jactr etc. -->
-							</featureDefinitions>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<!-- Sign the bundles / plugins -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jarsigner-plugin</artifactId>
-				<version>1.4</version>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-repository-plugin</artifactId>
+				<version>${tycho.version}</version>
 				<configuration>
-					<keystore>${jarsigner.keystore.path}</keystore>
-					<!-- Remaining configuration loaded from settings.xml -->
-					<storepass>${jarsigner.keystore.password}</storepass>
-					<alias>${jarsigner.key.alias}</alias>
-					<keypass>${jarsigner.key.password}</keypass>
-					<!-- Only jactr JARs will be signed, dependencies will not be signed. -->
-					<archiveDirectory>${project.build.directory}/repository</archiveDirectory>
-					<includes>
-						<include>plugins/org.jactr.eclipse.*ar</include>
-						<include>artifacts.jar</include>
-						<include>content.jar</include>
-					</includes>
+					<!-- TODO: Need to configure the required repositories in the feature 
+						/ category.xml / product file? -->
+					<includeAllDependencies>false</includeAllDependencies>
 				</configuration>
-				<executions>
-					<execution>
-						<id>sign</id>
-						<goals>
-							<goal>sign</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>verify</id>
-						<goals>
-							<goal>verify</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
-			<!-- Upload the P2 repository -->
+			<!-- Upload the P2 repository to monochromata.de -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>wagon-maven-plugin</artifactId>
@@ -190,22 +68,13 @@
 						<configuration>
 							<fromDir>${project.build.directory}/repository</fromDir>
 							<includes>*/**</includes>
-							<serverId>${jactr.eclipse.ftp.server}</serverId>
+							<serverId>ftp.monochromata.de</serverId>
 							<url>${jactr.eclipse.p2repo.upload.url}</url>
-							<!-- <toDir></toDir> -->
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 		</plugins>
-		<extensions>
-			<!-- Enabling the use of SFTP -->
-			<extension>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-ssh</artifactId>
-				<version>2.9</version>
-			</extension>
-		</extensions>
 	</build>
 
 </project>

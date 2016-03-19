@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: jACT-R Core
+Bundle-Version: 2.0.0
+Bundle-SymbolicName: org.jactr.eclipse.scripting;singleton:=true
+Bundle-Vendor: jactr.org
+DynamicImport-Package: *
+Eclipse-BuddyPolicy: registered
+Eclipse-RegisterBuddy: org.commonreality, org.apache.log4j
+Require-Bundle: org.jactr.scripting
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

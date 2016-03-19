@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Shell2 Plug-in
+Bundle-SymbolicName: org.jactr.eclipse.tools.shell;singleton:=true
+Bundle-Version: 2.0.0
+Export-Package: org.jactr.eclipse.tools.shell,
+ org.jactr.tools.shell.commands
+Require-Bundle: org.jactr.core,
+ org.jactr.io,
+ org.jactr.tools.shell,
+ org.eclipse.core.runtime,
+ org.apache.commons.logging,
+ org.beanshell.bsh,
+ org.beanshell.bsh-core
+Eclipse-BuddyPolicy: registered
+Eclipse-RegisterBuddy: org.jactr, org.jactr.io, org.commonreality, org.apache.log4j
+Bundle-Vendor: org.jactr

@@ -2,14 +2,18 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Association Viewer Ui Plug-in
 Bundle-SymbolicName: org.jactr.eclipse.association.ui; singleton:=true
-Bundle-Version: 1.0.1.qualifier
+Bundle-Version: 2.0.0
 Bundle-Activator: org.jactr.eclipse.association.ui.internal.Activator
-Require-Bundle: org.eclipse.ui,
+Require-Bundle: org.apache.commons.logging,
+ org.antlr,
+ org.javolution,
+ org.javolution.core-java,
+ org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.zest.core,
  org.eclipse.zest.layouts,
  org.eclipse.gef,
- org.jactr,
+ org.jactr.core,
  org.jactr.eclipse.compilers,
  org.jactr.eclipse.core,
  org.jactr.eclipse.ui,
@@ -27,3 +31,4 @@ Export-Package: org.jactr.eclipse.association.ui.filter,
  org.jactr.eclipse.association.ui.mapper.impl,
  org.jactr.eclipse.association.ui.model,
  org.jactr.eclipse.association.ui.views
+Bundle-Vendor: jactr.org

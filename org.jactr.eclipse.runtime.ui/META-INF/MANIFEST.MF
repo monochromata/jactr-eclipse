@@ -2,11 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: jACT-R Runtime UI
 Bundle-SymbolicName: org.jactr.eclipse.runtime.ui; singleton:=true
-Bundle-Version: 1.2.8.qualifier
-Bundle-ClassPath: runtime-ui.jar
+Bundle-Version: 2.0.0
 Bundle-Activator: org.jactr.eclipse.runtime.ui.UIPlugin
 Bundle-Vendor: jactr.org
-Bundle-Localization: plugin
 Export-Package: org.jactr.eclipse.runtime.ui,
  org.jactr.eclipse.runtime.ui.buffer,
  org.jactr.eclipse.runtime.ui.command,
@@ -26,7 +24,11 @@ Export-Package: org.jactr.eclipse.runtime.ui,
  org.jactr.eclipse.runtime.ui.tabs.iterative,
  org.jactr.eclipse.runtime.ui.tabs.normal,
  org.jactr.eclipse.runtime.ui.visicon
-Require-Bundle: org.eclipse.core.runtime,
+Require-Bundle: org.apache.commons.logging,
+ org.javolution,
+ org.javolution.core-java,
+ org.antlr,
+ org.eclipse.core.runtime,
  org.eclipse.jdt.launching,
  org.eclipse.debug.ui,
  org.eclipse.ui,
@@ -42,13 +44,13 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jdt.debug.ui,
  org.jactr.tools,
  org.eclipse.jdt.core,
- org.jactr,
+ org.jactr.core,
  org.eclipse.ui.editors,
  org.eclipse.jface,
  org.eclipse.swt,
- org.commonreality.api;bundle-version="1.0.0",
- org.commonreality.modalities;bundle-version="1.0.0",
- org.commonreality.net;bundle-version="1.0.0",
- org.commonreality.core;bundle-version="1.2.8"
+ org.commonreality.api,
+ org.commonreality.modalities,
+ org.commonreality.net,
+ org.commonreality.core
 Eclipse-RegisterBuddy: org.apache.log4j 
 Bundle-ActivationPolicy: lazy

@@ -2,8 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: jACT-R Compilers Plug-in
 Bundle-SymbolicName: org.jactr.eclipse.compilers;singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Require-Bundle: org.jactr.io,
+Bundle-Version: 2.0.0
+Require-Bundle: org.antlr,
+ org.jactr.io,
  org.eclipse.core.runtime,
  org.jactr.eclipse.bundles,
  org.jactr.eclipse.core

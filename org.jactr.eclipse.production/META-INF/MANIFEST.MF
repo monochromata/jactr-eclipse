@@ -2,14 +2,15 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Production Plug-in
 Bundle-SymbolicName: org.jactr.eclipse.production;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 2.0.0
 Bundle-Activator: org.jactr.eclipse.production.ProductionViewActivator
-Require-Bundle: org.eclipse.ui,
+Require-Bundle: org.apache.commons.logging,
+ org.antlr,
+ org.eclipse.ui,
  org.eclipse.core.runtime,
  org.jactr.tools,
  org.jactr.io,
  org.jactr.eclipse.ui,
- org.jactr.support,
  org.eclipse.draw2d,
  org.jactr.eclipse.core,
  org.eclipse.ui.editors,
@@ -18,3 +19,4 @@ Require-Bundle: org.eclipse.ui,
 Eclipse-LazyStart: true
 Export-Package: org.jactr.eclipse.production,
  org.jactr.eclipse.production.handler
+Bundle-Vendor: jactr.org

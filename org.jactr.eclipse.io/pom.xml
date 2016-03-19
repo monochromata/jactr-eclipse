@@ -1,0 +1,23 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.jactr.eclipse</groupId>
+		<artifactId>plugin-parent</artifactId>
+		<version>2.0.0</version>
+		<relativePath>../plugin-parent/pom.xml</relativePath>
+	</parent>
+	<groupId>org.jactr.eclipse</groupId>
+	<artifactId>org.jactr.eclipse.io</artifactId>
+	<version>2.0.0</version>
+	<packaging>eclipse-plugin</packaging>
+	<name>IO</name>
+	<description>jACT-R extension points for IO capabilities</description>
+
+	<properties>
+		<!-- TODO: Increase -->
+		<jacoco.check.minimum.covered.instructions.ratio>0.00</jacoco.check.minimum.covered.instructions.ratio>
+		<jacoco.check.minimum.covered.branches.ratio>0.00</jacoco.check.minimum.covered.branches.ratio>
+	</properties>
+
+</project>
