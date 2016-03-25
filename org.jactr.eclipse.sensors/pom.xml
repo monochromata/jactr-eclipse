@@ -20,4 +20,17 @@
 		<jacoco.check.minimum.covered.branches.ratio>0.00</jacoco.check.minimum.covered.branches.ratio>
 	</properties>
 	
+	<!-- Note that the dependencies listed here are only used by the Eclipse Java editor.
+	     The build uses the dependencies stated in META-INF/MANIFEST.MF . -->
+	<dependencies>
+		<dependency>
+			<groupId>org.commonreality</groupId>
+			<artifactId>sensors.swing</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.commonreality</groupId>
+			<artifactId>sensors.xml</artifactId>
+		</dependency>
+	</dependencies>
+	
 </project>

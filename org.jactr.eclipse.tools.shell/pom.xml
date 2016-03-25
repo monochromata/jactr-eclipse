@@ -19,4 +19,29 @@
 		<jacoco.check.minimum.covered.branches.ratio>0.00</jacoco.check.minimum.covered.branches.ratio>
 	</properties>
 
+	<!-- Note that the dependencies listed here are only used by the Eclipse Java editor.
+	     The build uses the dependencies stated in META-INF/MANIFEST.MF . -->
+	<dependencies>
+		<dependency>
+			<groupId>org.beanshell</groupId>
+			<artifactId>bsh</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.beanshell</groupId>
+			<artifactId>bsh-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jactr</groupId>
+			<artifactId>core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jactr</groupId>
+			<artifactId>io</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jactr</groupId>
+			<artifactId>tools.shell</artifactId>
+		</dependency>
+	</dependencies>
+
 </project>

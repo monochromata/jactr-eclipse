@@ -166,6 +166,76 @@
 		</site>
 	</distributionManagement>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.beanshell</groupId>
+				<artifactId>bsh</artifactId>
+				<version>${beanshell.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.beanshell</groupId>
+				<artifactId>bsh-core</artifactId>
+				<version>${beanshell.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.commonreality</groupId>
+				<artifactId>core</artifactId>
+				<version>${commonreality.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.commonreality</groupId>
+				<artifactId>sensors.swing</artifactId>
+				<version>${commonreality.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.commonreality</groupId>
+				<artifactId>sensors.xml</artifactId>
+				<version>${commonreality.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.antlr</groupId>
+				<artifactId>antlr</artifactId>
+				<version>${antlr.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jactr</groupId>
+				<artifactId>core</artifactId>
+				<version>${jactr.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jactr</groupId>
+				<artifactId>io</artifactId>
+				<version>${jactr.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jactr</groupId>
+				<artifactId>modules.threaded</artifactId>
+				<version>${jactr.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jactr</groupId>
+				<artifactId>modules.temporal</artifactId>
+				<version>${jactr.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jactr</groupId>
+				<artifactId>scripting</artifactId>
+				<version>${jactr.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jactr</groupId>
+				<artifactId>tools</artifactId>
+				<version>${jactr.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jactr</groupId>
+				<artifactId>tools.shell</artifactId>
+				<version>${jactr.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<build>
 		<pluginManagement>
 			<plugins>
