@@ -4,17 +4,9 @@ Bundle-Name: Swing Plug-in
 Bundle-SymbolicName: org.jactr.eclipse.sensors;singleton:=true
 Bundle-Version: 2.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: org.apache.commons.logging;bundle-version="1.1.1",
- org.commonreality.api,
- org.commonreality.modalities,
- org.commonreality.sensors.swing,
- org.jactr.core,
- org.jactr.io,
+Require-Bundle: org.commonreality.sensors.swing,
  org.commonreality.sensors.xml
 Eclipse-BuddyPolicy: registered
 Eclipse-RegisterBuddy: org.commonreality.core, org.jactr.io, org.jactr, org.jactr.tools, org.apache.log4j, org.apache.commons.logging 
-Export-Package: org.jactr.sensors.swing,
- org.jactr.sensors.swing.encoders,
- org.jactr.sensors.swing.io
 Bundle-ClassPath: .
 Bundle-Vendor: jactr.org
