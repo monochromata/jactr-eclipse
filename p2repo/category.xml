@@ -46,6 +46,7 @@
    <feature id="org.jactr.eclipse.bridge.jactr.tools.feature.source">
       <category name="org.jactr.eclipse.category"/>
    </feature>
+    <!-- Note that the repository references need to be kept in sync with the URLs provided in the parent POM -->
 	<repository-reference location="http://monochromata.de/eclipse/sites/org.commonreality" enabled="true" />
 	<repository-reference location="http://monochromata.de/eclipse/sites/org.jactr" enabled="true" />
 	<repository-reference location="http://download.eclipse.org/technology/nebula/snapshot" enabled="true" />

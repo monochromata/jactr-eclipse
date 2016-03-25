@@ -77,10 +77,12 @@
 		<!-- TODO: Use commonreality.org -->
 		<commonreality.version>2.0.98</commonreality.version>
 		<commonreality.server>monochromata.de</commonreality.server>
+		<!-- Note that the p2repo URLs need to be kept in sync with the repository references in the p2repo category.xml -->
 		<commonreality.p2repo.url>http://${commonreality.server}/eclipse/sites/org.commonreality</commonreality.p2repo.url>
 		<!-- TODO: Use jactr.org -->
 		<jactr.version>2.0.36</jactr.version>
 		<jactr.server>monochromata.de</jactr.server>
+		<!-- Note that the p2repo URLs need to be kept in sync with the repository references in the p2repo category.xml -->
 		<jactr.p2repo.url>http://${jactr.server}/eclipse/sites/org.jactr</jactr.p2repo.url>
 		<!-- TODO: Use jactr.org -->
 		<jactr.eclipse.version>${project.version}</jactr.eclipse.version>
@@ -89,6 +91,7 @@
 		<jactr.eclipse.download.prefix>http://${jactr.eclipse.server}</jactr.eclipse.download.prefix>
 		<jactr.eclipse.upload.prefix>sftp://${jactr.eclipse.ftp.server}/webseiten</jactr.eclipse.upload.prefix>
 		<jactr.eclipse.p2repo.path>eclipse/sites/${project.groupId}</jactr.eclipse.p2repo.path>
+		<!-- Note that the p2repo URLs need to be kept in sync with the repository references in the p2repo category.xml -->
 		<jactr.eclipse.p2repo.url>${jactr.eclipse.download.prefix}/${jactr.eclipse.p2repo.path}</jactr.eclipse.p2repo.url>
 		<jactr.eclipse.p2repo.upload.url>${jactr.eclipse.upload.prefix}/${jactr.eclipse.p2repo.path}</jactr.eclipse.p2repo.upload.url>
 		<jactr.eclipse.products.path>eclipse/products/${project.groupId}</jactr.eclipse.products.path>
@@ -103,6 +106,7 @@
 	</properties>
 
 	<!-- The repository contents constitute an implicit target platform definition. -->
+	<!-- Note that the p2repo URLs need to be kept in sync with the repository references in the p2repo category.xml -->
 	<repositories>
 		<repository>
 			<id>mars</id>
