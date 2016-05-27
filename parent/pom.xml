@@ -75,12 +75,12 @@
 		<org.eclipse.core.runtime.compatibility.version>3.2.300.v20150423-0821</org.eclipse.core.runtime.compatibility.version>
 		<mars-repo.url>http://download.eclipse.org/releases/mars</mars-repo.url>
 		<!-- TODO: Use commonreality.org -->
-		<commonreality.version>3.1.24</commonreality.version>
+		<commonreality.version>3.1.32</commonreality.version>
 		<commonreality.server>monochromata.de</commonreality.server>
 		<!-- Note that the p2repo URLs need to be kept in sync with the repository references in the p2repo category.xml -->
 		<commonreality.p2repo.url>http://${commonreality.server}/eclipse/sites/org.commonreality</commonreality.p2repo.url>
 		<!-- TODO: Use jactr.org -->
-		<jactr.version>3.1.23</jactr.version>
+		<jactr.version>3.1.24</jactr.version>
 		<jactr.server>monochromata.de</jactr.server>
 		<!-- Note that the p2repo URLs need to be kept in sync with the repository references in the p2repo category.xml -->
 		<jactr.p2repo.url>http://${jactr.server}/eclipse/sites/org.jactr</jactr.p2repo.url>
