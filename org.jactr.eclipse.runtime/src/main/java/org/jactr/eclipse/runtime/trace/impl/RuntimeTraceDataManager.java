@@ -90,7 +90,7 @@ public abstract class RuntimeTraceDataManager<T> implements
    * 
    * @param session
    * @param data
-   * @param modelName
+   * @param commonName
    */
   protected void modelAdded(ISession session, T data, String commonName)
   {

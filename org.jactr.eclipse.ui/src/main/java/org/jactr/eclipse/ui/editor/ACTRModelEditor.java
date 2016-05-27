@@ -72,8 +72,7 @@ import org.jactr.eclipse.ui.outline.ACTRContentOutline;
 import org.jactr.eclipse.ui.preferences.UIPreferences;
 
 /**
- * @author harrison To change the template for this generated type comment go to
- *         Window - Preferences - Java - Code Generation - Code and Comments
+ * @author harrison
  */
 public abstract class ACTRModelEditor extends AbstractDecoratedTextEditor
 {
@@ -149,9 +148,6 @@ public abstract class ACTRModelEditor extends AbstractDecoratedTextEditor
     return null;
   }
 
-  /**
-   * 
-   */
   public ACTRModelEditor()
   {
     super();
@@ -420,9 +416,7 @@ public abstract class ACTRModelEditor extends AbstractDecoratedTextEditor
   /**
    * modification to enable folding in the editor
    * 
-   * @see http
-   *      ://www.eclipse.org/articles/Article-Folding-in-Eclipse-Text-Editors
-   *      /folding.html
+   * See <a href="http://www.eclipse.org/articles/Article-Folding-in-Eclipse-Text-Editors/folding.html">Folding in Eclipse Text Editors</a>
    */
   @Override
   public void createPartControl(Composite parent)
@@ -453,9 +447,7 @@ public abstract class ACTRModelEditor extends AbstractDecoratedTextEditor
   /**
    * modification to enable folding in the editor
    * 
-   * @see http
-   *      ://www.eclipse.org/articles/Article-Folding-in-Eclipse-Text-Editors
-   *      /folding.html
+   * See <a href="http://www.eclipse.org/articles/Article-Folding-in-Eclipse-Text-Editors/folding.html">Folding in Eclipse Text Editors</a>
    */
   @Override
   protected ISourceViewer createSourceViewer(Composite parent,

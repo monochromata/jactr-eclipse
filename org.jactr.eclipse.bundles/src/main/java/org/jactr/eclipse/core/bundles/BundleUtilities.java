@@ -118,7 +118,6 @@ public class BundleUtilities
 
   /**
    * @param bundleName
-   * @return
    */
   static protected void getRequiredBundles(String bundleName,
       State platformState, Collection<BundleDescription> requiredBundles)
@@ -226,7 +225,7 @@ public class BundleUtilities
    * this is the code that actually does the work
    * 
    * @param modelBase
-   * @param dependenices
+   * @param dependencies
    */
   static protected void getDependencies(IPluginModelBase modelBase,
       Set<String> dependencies)

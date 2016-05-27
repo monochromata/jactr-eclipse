@@ -279,7 +279,7 @@ public abstract class AbstractExtensionPointRegistry<T extends ExtensionDescript
    * plugin bundleId. This is a workspace bundle that has bundle manifest
    * defined.
    * 
-   * @param bundleId
+   * @param modelBase
    * @return
    */
   protected Collection<IPluginExtension> getPluginExtensions(
@@ -303,7 +303,7 @@ public abstract class AbstractExtensionPointRegistry<T extends ExtensionDescript
   /**
    * returns all the extensions of extensionpoint in pluginid
    * 
-   * @param pluginId
+   * @param modelBase
    * @return
    */
   protected Collection<IExtension> getInstalledExtensions(

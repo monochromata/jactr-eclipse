@@ -40,8 +40,8 @@ import org.jactr.eclipse.ui.images.JACTRImages;
 import org.jactr.io.antlr3.misc.DetailedCommonTree;
 
 /**
- * basic ast viewer for {@link ACTRCompilationUnit}s. It can currently display
- * using both lazy and normal content providers. The prefered use is the lazy as
+ * basic ast viewer for ACT-R CompilationUnits. It can currently display
+ * using both lazy and normal content providers. The preferred use is the lazy as
  * it will handle very large models MUCH easier.<br>
  * <br>
  * The state persistence of the expansion state does not work with the lazy

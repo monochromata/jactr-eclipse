@@ -77,7 +77,7 @@ public class NewModelWizardPage1 extends WizardPage
   /**
    * Constructor for SampleNewWizardPage.
    * 
-   * @param pageName
+   * @param selection
    */
   public NewModelWizardPage1(ISelection selection)
   {

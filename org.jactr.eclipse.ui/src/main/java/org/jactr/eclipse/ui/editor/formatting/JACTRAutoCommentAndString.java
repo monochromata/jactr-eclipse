@@ -21,7 +21,7 @@ import org.eclipse.jface.text.IAutoEditStrategy;
 import org.eclipse.jface.text.IDocument;
 
 /**
- * automatically insert full comment text after <!
+ * automatically insert full comment text after {@code <!}
  * 
  * @author developer
  */

@@ -1,5 +1,6 @@
 package org.jactr.eclipse.launching;
 
+import java.io.File;
 import java.net.URI;
 import java.net.URL;
 import java.util.HashMap;
@@ -147,7 +148,9 @@ public class Application implements IApplication
   protected void runIterative(URL url) throws Exception
   {
     IterativeMain main = new IterativeMain();
-    main.run(url);
+    // TODO: does this retain existing semantics?
+    File workingDirectory = new File(".");
+    main.run(url, workingDirectory);
   }
 
   /**

@@ -236,8 +236,8 @@ public class JACTRImages
   }
 
   /**
-   * Returns the <code>Image<code> identified by the given key,
-   * or <code>null</code> if it does not exist.
+   * Returns the {@code Image} identified by the given key,
+   * or {@code null} if it does not exist.
    */
   public static Image getImage(String key)
   {
@@ -245,8 +245,8 @@ public class JACTRImages
   }
 
   /**
-   * Returns the <code>ImageDescriptor<code> identified by the given key,
-   * or <code>null</code> if it does not exist.
+   * Returns the {@code ImageDescriptor} identified by the given key,
+   * or {@code null} if it does not exist.
    */
   public static ImageDescriptor getImageDescriptor(String key)
   {

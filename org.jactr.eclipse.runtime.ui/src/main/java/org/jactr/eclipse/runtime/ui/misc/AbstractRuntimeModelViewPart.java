@@ -393,7 +393,7 @@ public abstract class AbstractRuntimeModelViewPart extends
    * called when a tab is closed. Currently this will trigger a session wide
    * close/destroy
    * 
-   * @param sessionData
+   * @param modelData
    */
   @Override
   protected void tabClosed(Object modelData)

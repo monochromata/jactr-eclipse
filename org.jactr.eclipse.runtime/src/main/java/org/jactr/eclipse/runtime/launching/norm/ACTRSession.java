@@ -70,7 +70,7 @@ public class ACTRSession extends AbstractSession
 
   /**
    * @param launch
-   * @param mode
+   * @param configuration
    * @throws IllegalStateException
    *           if we are unable to open the service connection
    */

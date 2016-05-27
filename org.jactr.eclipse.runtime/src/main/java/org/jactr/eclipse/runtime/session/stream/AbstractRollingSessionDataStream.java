@@ -339,10 +339,6 @@ public abstract class AbstractRollingSessionDataStream<I, T> extends
    * remove a subset (or all) of the T in data. Anything removed from data
    * should be added to removed for proper event notification. By default this
    * copies all of data into removed and clears data.
-   * 
-   * @param key
-   * @param container
-   * @return
    */
   protected void removeSubset(double timeOfData, double cullToTime,
       Collection<T> data, Collection<T> removed)

@@ -136,9 +136,10 @@ public class EnvironmentConfigurator
    * write the environment file used by org.jactr.jactr to launch this is the
    * ugliest piece of code I have probably ever written
    * 
-   * @note should be refactored
-   * @param configFile
+   * TODO: should be refactored
+   * @param environmentFile
    * @param configuration
+   * @param mode
    * @param monitor
    */
   static public void writeEnvironmentConfiguration(IFile environmentFile,
