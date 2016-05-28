@@ -12,6 +12,7 @@
 	<version>2.0.0</version>
 	<packaging>eclipse-plugin</packaging>
 	<name>Tools: Shell</name>
+	<description>TODO</description>
 	
 	<properties>
 		<!-- TODO: Increase -->
