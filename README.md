@@ -1,5 +1,5 @@
-jactr-eclipse
-=============
+jACT-R Eclipse
+==============
 
 Eclipse integration of jACT-R
 
