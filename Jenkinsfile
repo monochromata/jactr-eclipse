@@ -21,7 +21,7 @@ node("1gb") {
 			git url: Config.gitRepo
    
 			stage 'Set versions'
-			// TODO: Adjust the version numbers with a Bash script, not via Maven
+			// TODO: Adjust the version numbers with a Bash script, not via Maven, to speed up dramatically
 			maven('''-P replace-version-in-manifest-mf-files \
 					 clean com.google.code.maven-replacer-plugin:replacer:replace''')
 			maven('''-P replace-version-in-xml-files \

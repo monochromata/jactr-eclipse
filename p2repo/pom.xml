@@ -46,7 +46,6 @@
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-p2-repository-plugin</artifactId>
-				<version>${tycho.version}</version>
 				<configuration>
 					<!-- TODO: Need to configure the required repositories in the feature 
 						/ category.xml / product file? -->
@@ -57,7 +56,6 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>wagon-maven-plugin</artifactId>
-				<version>1.0</version>
 				<executions>
 					<execution>
 						<id>upload-P2</id>

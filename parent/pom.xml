@@ -94,8 +94,6 @@
 		<!-- Note that the p2repo URLs need to be kept in sync with the repository references in the p2repo category.xml -->
 		<jactr.eclipse.p2repo.url>${jactr.eclipse.download.prefix}/${jactr.eclipse.p2repo.path}</jactr.eclipse.p2repo.url>
 		<jactr.eclipse.p2repo.upload.url>${jactr.eclipse.upload.prefix}/${jactr.eclipse.p2repo.path}</jactr.eclipse.p2repo.upload.url>
-		<jactr.eclipse.products.path>eclipse/products/${project.groupId}</jactr.eclipse.products.path>
-		<jactr.eclipse.products.upload.url>${jactr.eclipse.upload.prefix}/${jactr.eclipse.products.path}</jactr.eclipse.products.upload.url>
 		<!-- Bundle properties -->
 		<bundle.manifest.version>2</bundle.manifest.version>
 		<bundle.vendor>jactr.org</bundle.vendor>
@@ -240,6 +238,31 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
+					<groupId>com.google.code.maven-replacer-plugin</groupId>
+					<artifactId>replacer</artifactId>
+					<version>${replacer.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>wagon-maven-plugin</artifactId>
+					<version>1.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-maven-plugin</artifactId>
+					<version>${tycho.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-p2-director-plugin</artifactId>
+					<version>${tycho.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-p2-repository-plugin</artifactId>
+					<version>${tycho.version}</version>
+				</plugin>
+				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
 					<version>2.10.3</version>
@@ -254,7 +277,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.7.6.201602180812</version>
+				<version>0.7.7-SNAPSHOT</version>
 				<executions>
 					<execution>
 						<goals>
@@ -266,7 +289,6 @@
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-maven-plugin</artifactId>
-				<version>${tycho.version}</version>
 				<extensions>true</extensions>
 			</plugin>
 			<plugin>
@@ -342,7 +364,6 @@
 					<plugin>
 						<groupId>com.google.code.maven-replacer-plugin</groupId>
 						<artifactId>replacer</artifactId>
-						<version>${replacer.plugin.version}</version>
 						<goals>
 							<goal>replace</goal>
 						</goals>
@@ -366,7 +387,6 @@
 					<plugin>
 						<groupId>com.google.code.maven-replacer-plugin</groupId>
 						<artifactId>replacer</artifactId>
-						<version>${replacer.plugin.version}</version>
 						<goals>
 							<goal>replace</goal>
 						</goals>
