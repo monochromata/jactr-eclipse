@@ -29,7 +29,15 @@ node("1gb") {
 			stage 'Install'
 			maven('install')
 			
-			// TODO: The product and the p2repo should be deployed, too
+			stage 'Deploy P2 repo'
+			maven('--file p2repo/pom.xml \
+				   -Dmaven.install.skip=true \
+				   -DskipTests=true \
+	       		   -DskipITs=true \
+   				   deploy')
+   			
+   			// TODO: rename and upload product files
+   			// TODO: Rewrite and upload index.html
 			
 			stage name: 'Site deploy', concurrency: 1
 			sh '''touch ~/.ssh/known_hosts \
