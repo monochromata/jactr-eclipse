@@ -30,6 +30,9 @@ node("1gb") {
 			maven('install')
 			
 			stage name: 'Deploy P2 repo', concurrency: 1
+			sh '''touch ~/.ssh/known_hosts \
+				&& ssh-keygen -f ~/.ssh/known_hosts -R $UPLOAD_SERVER_NAME \
+				&& cat $PATH_TO_UPLOAD_SERVER_SSH_FINGERPRINT_FILE >> ~/.ssh/known_hosts'''
 			maven('--file p2repo/pom.xml \
 				   -Dmaven.install.skip=true \
 				   -DskipTests=true \
@@ -44,9 +47,6 @@ node("1gb") {
    				   deploy')
 			
 			stage name: 'Site deploy', concurrency: 1
-			sh '''touch ~/.ssh/known_hosts \
-				&& ssh-keygen -f ~/.ssh/known_hosts -R $UPLOAD_SERVER_NAME \
-				&& cat $PATH_TO_UPLOAD_SERVER_SSH_FINGERPRINT_FILE >> ~/.ssh/known_hosts'''
 			// Retry is necessary because upload is unreliable
 			retry(3) {
 	       		maven('''-DskipTests=true \
