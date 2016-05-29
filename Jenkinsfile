@@ -50,13 +50,17 @@ node("2gb") {
    			def newVersion = getNextVersion()
 			sh """cp org.jactr.eclipse.product/index.html org.jactr.eclipse.product/target/products \
 				  && cd org.jactr.eclipse.product/target/products/ \
-				  && sed 's/jACT-R Eclipse for/jACT-R Eclipse ${newVersion} for/' index.html \
-				  && sed 's/jactr-eclipse-/jactr-eclipse-${newVersion}-/' index.html \
+				  && sed --in-place 's/jACT-R Eclipse for/jACT-R Eclipse ${newVersion} for/' index.html \
+				  && sed --in-place 's/jactr-eclipse-/jactr-eclipse-${newVersion}-/' index.html \
 				  && rename 's/jactr-eclipse-/jactr-eclipse-${newVersion}-/' *"""
 			// Retry is necessary because upload is unreliable
    			retry(3) {
-   				sh '''sshpass -p $UPLOAD_PASSWORD scp ./jactr-eclipse-* $UPLOAD_USER_NAME@$UPLOAD_SERVER_NAME:/$UPLOAD_PATH_PRODUCTS/org.jactr.eclipse/ \
-   					  && sshpass -p $UPLOAD_PASSWORD scp ./index.html $UPLOAD_USER_NAME@$UPLOAD_SERVER_NAME:/$UPLOAD_PATH_PRODUCTS/org.jactr.eclipse/'''
+   				sh '''cd org.jactr.eclipse.product/target/products/ \
+   					&& sshpass -p $UPLOAD_PASSWORD sftp -b $UPLOAD_USER_NAME@$UPLOAD_SERVER_NAME:/$UPLOAD_PATH_PRODUCTS << EOF
+	   					put jactr-eclipse-*
+	   					put index.html
+	   					bye
+	   					EOF'''
    			}
 			
 			stage name: 'Site deploy', concurrency: 1
