@@ -291,17 +291,16 @@
 							<ws>gtk</ws>
 							<arch>x86_64</arch>
 						</environment>
-						<!-- Windows and Mac are temporarily disabled to save time -->
-						<!-- <environment> -->
-						<!-- <os>win32</os> -->
-						<!-- <ws>win32</ws> -->
-						<!-- <arch>x86_64</arch> -->
-						<!-- </environment> -->
-						<!-- <environment> -->
-						<!-- <os>macosx</os> -->
-						<!-- <ws>cocoa</ws> -->
-						<!-- <arch>x86_64</arch> -->
-						<!-- </environment> -->
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
 					</environments>
 					<!-- TODO: This is actually misplaced, but see https://www.eclipse.org/forums/index.php?t=msg&th=1068443&goto=1701679&#msg_1701679 
 						and https://bugs.eclipse.org/bugs/attachment.cgi?id=248973 and http://wiki.eclipse.org/OTJ -->
