@@ -1,19 +1,7 @@
 class Config {
 	public static String oldVersion = '2.0.0'
 	public static String versionPrefix = '3.2.'
-	public static String newVersion = getNextVersion()
 	public static String gitRepo = 'https://github.com/monochromata/jactr-eclipse.git'
-	
-	// TODO: Move to workflowLibs
-	// TODO: Auto-assign version numbers via an algorithm that
-	//		 * does not yield un-deployed versions for failed builds
-	// 		 * permits major and minor numbers to be incremented via tags in the commit message
-	//		 * starts with a patch number of 0 if the minor was incremented (same for minor if major was incremented)
-	//       ! Note that from then on (including "Set versions" stage, concurrency 1
-	//		   will be required.
-	public static String getNextVersion() {
-		return Config.versionPrefix+env.BUILD_NUMBER
-	}
 }
 
 // TODO: Even this might be moved into workflowLibs, passing just a Config instance
@@ -59,11 +47,12 @@ node("1gb") {
    			
    			stage name: 'Deploy product', concurrency: 1
    			// Create index.html and add version number to files
+   			def newVersion = nextVersion()
 			sh """cp org.jactr.eclipse.product/index.html org.jactr.eclipse.product/target/products \
 				  && cd org.jactr.eclipse.product/target/products/ \
-				  && sed 's/jACT-R Eclipse for/jACT-R Eclipse ${Config.newVersion} for/' index.html \
-				  && sed 's/jactr-eclipse-/jactr-eclipse-${Config.newVersion}-/' index.html \
-				  && rename 's/jactr-eclipse-/jactr-eclipse-${Config.newVersion}-/' *"""
+				  && sed 's/jACT-R Eclipse for/jACT-R Eclipse ${newVersion} for/' index.html \
+				  && sed 's/jactr-eclipse-/jactr-eclipse-${newVersion}-/' index.html \
+				  && rename 's/jactr-eclipse-/jactr-eclipse-${newVersion}-/' *"""
 			// Retry is necessary because upload is unreliable
    			retry(3) {
    				sh '''sshpass -p $UPLOAD_PASSWORD scp ./jactr-eclipse-* $UPLOAD_USER_NAME@$UPLOAD_SERVER_NAME:/$UPLOAD_PATH_PRODUCTS/org.jactr.eclipse/ \
@@ -83,13 +72,26 @@ node("1gb") {
 
 // TODO: Move to workflowLibs
 def maven(String optionsAndGoals) {
+   def newVersion=nextVersion()
    sh '''mvn \
    		 -Djarsigner.keystore.path=$PATH_TO_JARSIGNER_KEYSTORE \
          --errors \
          --settings $PATH_TO_SETTINGS_XML \
          -DoldVersion='''+Config.oldVersion+''' \
-         -DnewVersion='''+Config.newVersion+''' \
+         -DnewVersion='''+newVersion+''' \
          '''+optionsAndGoals
+}
+
+// TODO: Move to workflowLibs
+// TODO: Auto-assign version numbers via an algorithm that
+//		 * does not yield un-deployed versions for failed builds
+// 		 * permits major and minor numbers to be incremented via tags in the commit message
+//		 * starts with a patch number of 0 if the minor was incremented (same for minor if major was incremented)
+//       ! Note that from then on (including "Set versions" stage, concurrency 1
+//		   will be required.
+//       ! Note that multiple invocations of this method must return the same value
+def getNextVersion() {
+	return Config.versionPrefix+env.BUILD_NUMBER
 }
 
 // TODO: Move to workflowLibs
