@@ -29,15 +29,19 @@ node("1gb") {
 			stage 'Install'
 			maven('install')
 			
-			stage 'Deploy P2 repo', concurrency: 1
+			stage name: 'Deploy P2 repo', concurrency: 1
 			maven('--file p2repo/pom.xml \
 				   -Dmaven.install.skip=true \
 				   -DskipTests=true \
 	       		   -DskipITs=true \
    				   deploy')
    			
-   			// TODO: rename and upload product files
-   			// TODO: Rewrite and upload index.html
+   			stage name: 'Deploy product', concurrency: 1
+			maven('--file org.jactr.eclipse.product/pom.xml \
+				   -Dmaven.install.skip=true \
+				   -DskipTests=true \
+	       		   -DskipITs=true \
+   				   deploy')
 			
 			stage name: 'Site deploy', concurrency: 1
 			sh '''touch ~/.ssh/known_hosts \
