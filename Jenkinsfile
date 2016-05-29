@@ -29,7 +29,7 @@ node("1gb") {
 			stage 'Install'
 			maven('install')
 			
-			stage 'Deploy P2 repo'
+			stage 'Deploy P2 repo', concurrency: 1
 			maven('--file p2repo/pom.xml \
 				   -Dmaven.install.skip=true \
 				   -DskipTests=true \
