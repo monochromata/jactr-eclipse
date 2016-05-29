@@ -3,6 +3,17 @@ class Config {
 	public static String versionPrefix = '3.2.'
 	public static String newVersion = getNextVersion()
 	public static String gitRepo = 'https://github.com/monochromata/jactr-eclipse.git'
+	
+	// TODO: Move to workflowLibs
+	// TODO: Auto-assign version numbers via an algorithm that
+	//		 * does not yield un-deployed versions for failed builds
+	// 		 * permits major and minor numbers to be incremented via tags in the commit message
+	//		 * starts with a patch number of 0 if the minor was incremented (same for minor if major was incremented)
+	//       ! Note that from then on (including "Set versions" stage, concurrency 1
+	//		   will be required.
+	public static String getNextVersion() {
+		return Config.versionPrefix+env.BUILD_NUMBER
+	}
 }
 
 // TODO: Even this might be moved into workflowLibs, passing just a Config instance
@@ -79,17 +90,6 @@ def maven(String optionsAndGoals) {
          -DoldVersion='''+Config.oldVersion+''' \
          -DnewVersion='''+Config.newVersion+''' \
          '''+optionsAndGoals
-}
-
-// TODO: Move to workflowLibs
-// TODO: Auto-assign version numbers via an algorithm that
-//		 * does not yield un-deployed versions for failed builds
-// 		 * permits major and minor numbers to be incremented via tags in the commit message
-//		 * starts with a patch number of 0 if the minor was incremented (same for minor if major was incremented)
-//       ! Note that from then on (including "Set versions" stage, concurrency 1
-//		   will be required.
-def getNextVersion() {
-	return Config.versionPrefix+env.BUILD_NUMBER
 }
 
 // TODO: Move to workflowLibs
