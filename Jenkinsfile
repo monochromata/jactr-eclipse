@@ -47,7 +47,7 @@ node("1gb") {
    			
    			stage name: 'Deploy product', concurrency: 1
    			// Create index.html and add version number to files
-   			def newVersion = nextVersion()
+   			def newVersion = getNextVersion()
 			sh """cp org.jactr.eclipse.product/index.html org.jactr.eclipse.product/target/products \
 				  && cd org.jactr.eclipse.product/target/products/ \
 				  && sed 's/jACT-R Eclipse for/jACT-R Eclipse ${newVersion} for/' index.html \
@@ -72,7 +72,7 @@ node("1gb") {
 
 // TODO: Move to workflowLibs
 def maven(String optionsAndGoals) {
-   def newVersion=nextVersion()
+   def newVersion=getNextVersion()
    sh '''mvn \
    		 -Djarsigner.keystore.path=$PATH_TO_JARSIGNER_KEYSTORE \
          --errors \
