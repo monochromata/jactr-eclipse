@@ -56,7 +56,7 @@ node("2gb") {
 			// Retry is necessary because upload is unreliable
    			retry(3) {
    				sh '''cd org.jactr.eclipse.product/target/products/ \
-   					&& sshpass -p $UPLOAD_PASSWORD sftp $UPLOAD_USER_NAME@$UPLOAD_SERVER_NAME:$UPLOAD_PATH_PRODUCTS << EOF
+   					&& sshpass -p $UPLOAD_PASSWORD sftp $UPLOAD_USER_NAME@$UPLOAD_SERVER_NAME:$UPLOAD_PATH_PRODUCTS/org.jactr.eclipse << EOF
 	   					put jactr-eclipse-*
 	   					put index.html
 	   					bye
