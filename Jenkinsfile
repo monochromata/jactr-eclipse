@@ -100,9 +100,12 @@ def getNextVersion() {
 
 // TODO: Move to workflowLibs
 def installToolsIfNecessary() {
-   sh '''echo "deb http://http.debian.net/debian jessie-backports main" > /etc/apt/sources.list.d/jessie-backports.list \
-        && apt-get update \
-        && apt-get remove --yes openjdk-7-jdk \
-        && apt-get install --yes openjdk-8-jre-headless openjdk-8-jdk git maven sshpass\
-        && /usr/sbin/update-java-alternatives -s java-1.8.0-openjdk-amd64 '''
+    // Retry is necessary because downloads via apt-get are unreliable
+   	retry(3) {
+	   sh '''echo "deb http://http.debian.net/debian jessie-backports main" > /etc/apt/sources.list.d/jessie-backports.list \
+	        && apt-get update \
+	        && apt-get remove --yes openjdk-7-jdk \
+	        && apt-get install --yes openjdk-8-jre-headless openjdk-8-jdk git maven sshpass\
+	        && /usr/sbin/update-java-alternatives -s java-1.8.0-openjdk-amd64 '''
+	}
 }
